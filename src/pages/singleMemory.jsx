@@ -7,8 +7,11 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../contexts/userContext";
+import BASE_URL from "../helpers/axios";
+import { ThemeConText } from "../contexts/themeContext";
 
 const SingleMemoryPage = () => {
+    const {theme} = useContext(ThemeConText)
     const { userState } = useContext(UserContext)
     const [editModal, setEditModal] = useState(false);
     const [editForm, setEditForm] = useState(false);
@@ -38,7 +41,7 @@ const SingleMemoryPage = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const res = await axios.get(`/api/memories/${id}`, {
+            const res = await axios.get(`${BASE_URL}/api/memories/${id}`, {
                 headers: {
                     authorization: `Bearer ${userState.user.token}`
                 }
@@ -59,7 +62,7 @@ const SingleMemoryPage = () => {
         fetchData()
     }, [fetchData])
     return (
-        <StyledSingleMemoryPage>
+        <StyledSingleMemoryPage dark={theme === true ? "light" : "dark"}>
             {editModal && <EditAndDelete onClick={handleClose} onEdit={handleEdit} id={memory._id} />}
             {editForm && <EditMemory onCloseEdit={handleCloseEdit} />}
             <div onClick={handleNavigate} className="shadow"><FaTimes className="close" onClick={handleNavigate} /></div>

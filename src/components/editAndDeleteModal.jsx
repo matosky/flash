@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { MemoryContext } from "../contexts/memoryContext";
 import { UserContext } from "../contexts/userContext";
 import { StyledEditAndDeleteModal } from "../styles/editAndDelete.styled";
+import BASE_URL from "../helpers/axios";
 
 const EditAndDelete = ({ onClick, onEdit, id }) => {
     const { dispatch } = useContext(MemoryContext)
     const { userState } = useContext(UserContext)
     const navigate = useNavigate()
+
     const deleteMemory = useCallback(async () => {
         try {
-            const res = await axios.delete(`/api/memories/${id}`, {
+            const res = await axios.delete(`${BASE_URL}/api/memories/${id}`, {
                 headers: {
                     authorization: `Bearer ${userState.user.token}`
                 }
@@ -25,7 +27,7 @@ const EditAndDelete = ({ onClick, onEdit, id }) => {
             console.log(err)
         }
 
-    }, [userState, id, navigate])
+    }, [userState, id, navigate, dispatch])
     return (
         <StyledEditAndDeleteModal>
             <ul>

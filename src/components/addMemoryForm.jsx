@@ -4,6 +4,7 @@ import axios from "axios";
 import { ModalContext } from "../contexts/modalContext";
 import { UserContext } from "../contexts/userContext";
 import { MemoryContext } from "../contexts/memoryContext";
+import BASE_URL from "../helpers/axios";
 
 const CreateMemory = () => {
     const { userState } = useContext(UserContext)
@@ -15,7 +16,6 @@ const CreateMemory = () => {
     const [location, setLocation] = useState('')
     const [file, setFile] = useState('')
     const [loading, setIloading] = useState(false);
-    const [refresh, setFresh] = useState(false)
 
 
     const handleFile = (e) => {
@@ -32,7 +32,7 @@ const CreateMemory = () => {
         formData.append("location", location)
         formData.append("image", file)
 
-        const URL = "/api/memories";
+        const URL = `${BASE_URL}/api/memories`;
         await axios.post(URL, formData, {
             headers: {
                 authorization: `Bearer ${userState.user.token}`
@@ -42,7 +42,6 @@ const CreateMemory = () => {
                 setIloading(false)
                 setModals({ ...modals, createModal: false })
                 dispatch({ type: "ADD_MEMORY", payload: result.data.data.memory })
-                setFresh(true);
             })
             .catch(err => {
                 console.log(err)

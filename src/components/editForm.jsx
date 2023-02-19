@@ -2,13 +2,12 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import { MemoryContext } from "../contexts/memoryContext";
 import { UserContext } from "../contexts/userContext";
 import { StyledEditForm } from "../styles/editForm.styled"
+import BASE_URL from "../helpers/axios";
 
 const EditMemory = ({ onCloseEdit }) => {
     const { userState } = useContext(UserContext);
-    const { dispatch } = useContext(MemoryContext);
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -21,7 +20,7 @@ const EditMemory = ({ onCloseEdit }) => {
         e.preventDefault();
         try {
             const response = await axios
-                .patch(`/api/memories/${id}`, {
+                .patch(`${BASE_URL}/api/memories/${id}`, {
                     title: title,
                     description: description
                 }, {

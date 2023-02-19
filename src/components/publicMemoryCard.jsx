@@ -1,19 +1,19 @@
-import axios from 'axios';
 import { useContext, useEffect, useState, useMemo } from 'react';
 import Memory from './memory';
 import HashLoader from "react-spinners/ClipLoader"
 import { MemoryContext } from '../contexts/memoryContext';
 import NavbarMobile from './navbarMobile';
+import axios from 'axios';
+import BASE_URL from '../helpers/axios';
 
 function PublicMemoryCard() {
     const { state, dispatch } = useContext(MemoryContext)
     const [loading, setIsloading] = useState(false);
-
     useEffect(() => {
         const fetchData = async() => {
             setIsloading(true)
            const user = JSON.parse(localStorage.getItem("user"))
-        await axios.get("/api/memories", {
+        await axios.get(`${BASE_URL}/api/memories`, {
             headers: {
                 authorization: `Bearer ${user?.token || "backup"}`,
             }

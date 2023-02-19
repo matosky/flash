@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/userContext';
+import BASE_URL from '../helpers/axios';
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ const Signup = () => {
     console.log({ email, password, firstname, lastname, username, gender })
 
     try {
-      const res = await axios.post("http://localhost:4000/api/users/signUp", {
+      const res = await axios.post(`${BASE_URL}/api/users/signUp`, {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           first_name: firstname,

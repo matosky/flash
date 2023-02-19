@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { StyledSignUpPage } from "../styles/signUpPage.styled";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { UserContext } from "../contexts/userContext"
+import BASE_URL from "../helpers/axios";
 
 function Login() {
   const { userDispatch } = useContext(UserContext)
@@ -20,7 +21,7 @@ function Login() {
     setError('')
     try {
       console.log("anything")
-      const res = await axios.post("/api/users/login", {
+      const res = await axios.post(`${BASE_URL}/api/users/login`, {
         headers: {
             'Content-Type': 'application/json'
         },

@@ -4,7 +4,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../contexts/userContext";
-
+import BASE_URL from "../helpers/axios";
 
 const OtherUserSingleMemoryPage = () => {
     const { userState } = useContext(UserContext)
@@ -17,7 +17,7 @@ const OtherUserSingleMemoryPage = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const res = await axios.get(`/api/memories/${id}`, {
+            const res = await axios.get(`${BASE_URL}/api/memories/${id}`, {
                 headers: {
                     authorization: `Bearer ${userState?.user?.token}`
                 }

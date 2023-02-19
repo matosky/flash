@@ -8,6 +8,7 @@ export const StyledSingleMemoryPage = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    color:${(props) => props.dark === "dark" ? "#fff" : "#000"};
 
   
 

@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/userContext";
 import { ModalContext } from "../contexts/modalContext";
+import BASE_URL from "../helpers/axios";
 
 const SearchBarDestop = ({ handleClose }) => {
     const { modals, setModals } = useContext(ModalContext)
@@ -27,7 +28,7 @@ const SearchBarDestop = ({ handleClose }) => {
     useEffect(() => {
         async function fetchData(event) {
             try {
-                const response = await axios(`/api/users/${inputValue}`);
+                const response = await axios(`${BASE_URL}/api/users/${inputValue}`);
                 const user = response.data.user;
                 console.log(response)
                 setData(user);

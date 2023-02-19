@@ -1,7 +1,7 @@
 import { StyledOwnMemoryPage } from "../styles/ownMemory.styled";
 import OwnMemoryImageCard from "../components/ownMemoryCard";
 import { Link, useParams,  useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { UserContext } from "../contexts/userContext";
 import { ThemeConText } from "../contexts/themeContext";
@@ -10,11 +10,12 @@ import pic from "../images/stories/avatar-male.png"
 import { FaBars, FaCog, FaMoon,FaTimes } from "react-icons/fa";
 import { ModalContext } from "../contexts/modalContext";
 import CreateMemory from "../components/addMemoryForm";
+import BASE_URL from "../helpers/axios";
 
 const OwnMemoryPage = () => {
     const {modals, setModals} = useContext(ModalContext)
     const {theme, setTheme} = useContext(ThemeConText)
-    const { userState, userDispatch } = useContext(UserContext)
+    const { userDispatch } = useContext(UserContext)
     const [ownState, setOwnSate] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [settings, setSettings] = useState(false)
@@ -28,12 +29,15 @@ const OwnMemoryPage = () => {
         userDispatch({ type: "LOGOUT" })
         navigate("/")
     }
-    const fetchData = useCallback(async () => {
-        setIsLoading(true)
+
+    useEffect(() => {
+        const fetchData = async() => {
+            setIsLoading(true)
+           const user = JSON.parse(localStorage.getItem("user"))
         try {
-            const res = await axios.get(`/api/memories/user/${username}`, {
+            const res = await axios.get(`${BASE_URL}/api/memories/user/${username}`, {
                 headers: {
-                    authorization: `Bearer ${userState.user?.token}`
+                    authorization: `Bearer ${user?.token}`
                 }
             })
             if (res.status === 200 && res.data.data.memory.length === 0) {
@@ -49,11 +53,11 @@ const OwnMemoryPage = () => {
         } catch (err) {
             console.log(err)
         }
-    }, [userState, username]);
-
-    useEffect(() => {
+    }
         fetchData()
-    }, [fetchData])
+    }, [username])
+      const cachedData = useMemo(() => ownState, [ownState]);
+
     return (
         <StyledOwnMemoryPage>
             {modals.createModal && <div onClick={() => setModals({ ...modals, createModal: false })} className="shadow"><FaTimes className="times" onClick={() => setModals({ ...modals, createModal: false })} /></div>}
@@ -86,7 +90,7 @@ const OwnMemoryPage = () => {
                 </header>
                 {isLoading ? <div className='centerLoader'><HashLoader color="#e6683c" /></div> : <h3>{errorText}</h3>}
                 <section className="grid grid-fill">
-                    {ownState && ownState.map(mem => {
+                    {cachedData && cachedData.map(mem => {
                         return (
                             <Link className="card" key={mem._id} to={`/home/singleMemoryPage/${mem._id}`}>
                                 <OwnMemoryImageCard image={mem.photo.url} />
