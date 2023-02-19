@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect } from "react";
-import { FaBars, FaBell, FaCog, FaHome, FaMoon, FaPlus, FaSearch, FaUser } from "react-icons/fa"
+import { useState, useContext} from "react";
+import { FaBars, FaCog, FaHome, FaMoon, FaPlus, FaSearch, FaUser } from "react-icons/fa"
 import { StyledSidebar } from "../styles/sidebar.styled";
 import { Link, useNavigate } from "react-router-dom";
 import CreateMemory from "./addMemoryForm";
