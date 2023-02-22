@@ -9,7 +9,7 @@ export const StyledSidebar = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 0 0 30px 10px;
+    padding: 20px 0 30px 10px;
     position: relative;
     font-weight: 600;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;

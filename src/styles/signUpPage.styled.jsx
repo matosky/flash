@@ -33,6 +33,17 @@ export const StyledSignUpPage = styled.div`
          border-top-width: 20px;
     }
 
+    .gender{
+        width: 100%;
+    }
+
+    .gender select{
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .gender select option{
+    }
     
 
 

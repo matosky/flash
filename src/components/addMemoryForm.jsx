@@ -10,7 +10,6 @@ const CreateMemory = () => {
     const { userState } = useContext(UserContext)
     const { dispatch } = useContext(MemoryContext)
     const { modals, setModals } = useContext(ModalContext)
-    const [creator, setCreator] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
@@ -26,7 +25,6 @@ const CreateMemory = () => {
         e.preventDefault();
         setIloading(true)
         const formData = new FormData();
-        formData.append("user_name", creator)
         formData.append("title", title)
         formData.append("description", description)
         formData.append("location", location)
@@ -54,15 +52,6 @@ const CreateMemory = () => {
                 Create new memory
             </h4>
             <form onSubmit={handleCreate} encType="multipart/form-data">
-                <div className="user field">
-                    <label>creator</label>
-                    <input
-                        type="text"
-                        value={creator}
-                        placeholder="creator"
-                        onChange={(e) => setCreator(e.target.value)}
-                    />
-                </div>
                 <div className="title field">
                     <label>title</label>
                     <input

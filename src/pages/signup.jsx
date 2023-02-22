@@ -50,6 +50,11 @@ const Signup = () => {
     }
 
   }
+
+  const handleSelect = (e) => {
+    console.log(e.target.value)
+    setGender(e.target.value)
+  }
   return (
     <StyledSignUpPage>
       <form className="signup" onSubmit={handleSubmit}>
@@ -61,6 +66,7 @@ const Signup = () => {
             type="text"
             onChange={(e) => setFirstname(e.target.value)}
             value={firstname}
+            required
           />
         </div>
         <div className='lastname-field field'>
@@ -69,6 +75,7 @@ const Signup = () => {
             type="text"
             onChange={(e) => setLastname(e.target.value)}
             value={lastname}
+            required
           />
         </div>
         <div className='email-field field'>
@@ -77,6 +84,7 @@ const Signup = () => {
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
           />
         </div>
         <div className='username field'>
@@ -89,11 +97,15 @@ const Signup = () => {
         </div>
         <div className='gender field'>
           <label>Gender:</label>
-          <input
-            type="text"
-            onChange={(e) => setGender(e.target.value)}
-            value={gender}
-          />
+          <select name="gender" id="gender"
+            onChange={handleSelect}
+            required
+          >
+            <option value="">-Select Gender-</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
         <div className='password-field field'>
           <label>Password:</label>
@@ -103,7 +115,7 @@ const Signup = () => {
             value={password}
           />
         </div>
-        {loading ? <button className="signup-btn">Just a Sec...</button> : <button className='signup-btn'>SignUp</button>}
+        {loading ? <button className="signup-btn" disabled>Loading...</button> : <button className='signup-btn'>SignUp</button>}
         <p>Already have an account?<Link to="/login">SignIn</Link></p>
       </form>
     </StyledSignUpPage>

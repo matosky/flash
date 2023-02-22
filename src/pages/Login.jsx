@@ -73,7 +73,7 @@ function Login() {
             />
           </div>
           {error && <p style={{ color: "red" }}> {error}</p>}
-          {loading ? <button className="signup-btn">Just a Sec...</button> : <button className="signup-btn">Login</button>}
+          {loading ? <button className="signup-btn" disabled>Just a Sec...</button> : <button className="signup-btn">Login</button>}
           <p>
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
