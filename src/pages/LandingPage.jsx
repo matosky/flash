@@ -1,12 +1,9 @@
-import logo from "../images/logo.png";
-import woman from "../images/woman.png";
+
 import { Link, useNavigate } from "react-router-dom"
-import { useContext } from "react";
-import { UserContext } from "../contexts/userContext";
+import { StyledLanding } from "../styles/landing.styled";
 
 
 function LandingPage() {
-    const { userState } = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleAuth = () => {
@@ -20,41 +17,28 @@ function LandingPage() {
         navigate("/home/public")
     }
     return (
-        <div className="landingPage__container">
-            <header className="header ">
-                <div className="logo">
-                    <img src={logo} alt="" width="50" />
-                    <h2>Flash </h2>
-                </div>
-                {
-                    <>
-                        {userState.user ? <div>Welcome | <h3>{userState.user.username}</h3></div> :
-                            <div className="login-signup " >
-                                <Link className="but-login" to="/login">Log in</Link>
-                                <Link className="butIcon-signup" to="/signup">Sign Up</Link>
-                            </div>
-                        }
-                    </>
-                }
+        <StyledLanding>
+            <header>
+                <nav>
+                    <h1 className="logoLan">Flash</h1>
+                    <Link to="/login">
+                        <span>Login</span>
+                    </Link>
+                </nav>
             </header>
-
-            <main className="main-app">
-                <div className="main-content">
-                    <div className="left-side">
-                        <h1 className="alw">Flash  Into<br />
-                            <span className="shift-provide"></span><span className="provide"> Your</span> <br /> <span className="memo">Memory</span><span className="provide2"></span></h1>
-                        <h3 className="paratext">
-                            Store, Preserve and Share <br /> Your memories with <br /> Friends, family or anyone.
-                        </h3>
-                        <button className="butIcon-signup always-own" onClick={handleAuth}>Get Started</button>
-                    </div>
-                    <div className="right-side">
-                        <img className="landGirl" src={woman} alt=""  />
-                    </div>
+            <section>
+                <div className="top">
+                    <h2>Flash X Memories</h2>
+                    <p>Reminisce on your past memories with family, loved ones</p>
+                    <button onClick={handleAuth}>Get Started</button>
                 </div>
-
-            </main>
-        </div>
+                <div className="boxLan">
+                    <div className="box2 boxi"></div>
+                    <div className="box4 boxi"></div>
+                    <div className="box5 boxi"></div>
+                </div>
+            </section>
+        </StyledLanding>
 
     );
 

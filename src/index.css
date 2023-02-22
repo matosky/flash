@@ -22,7 +22,7 @@ code {
 }
 
 /* Landing page Down ....................................................... */
-.landingPage__container {
+/* .landingPage__container {
   width: 90%;
   max-width: 100%;
   height: 100vh;
@@ -135,7 +135,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* Main side........................... */
 /* .App{
