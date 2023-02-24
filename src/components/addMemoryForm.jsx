@@ -23,6 +23,9 @@ const CreateMemory = () => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
+        if (!title || !description || !file) {
+            return;
+        }
         setIloading(true)
         const formData = new FormData();
         formData.append("title", title)
@@ -51,7 +54,7 @@ const CreateMemory = () => {
             <h4>
                 Create new memory
             </h4>
-            <form onSubmit={handleCreate} encType="multipart/form-data">
+            <form onSubmit={handleCreate} encType="multipart/form-data" autoComplete="on">
                 <div className="title field">
                     <label>title</label>
                     <input
@@ -59,16 +62,20 @@ const CreateMemory = () => {
                         placeholder="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        required
+                        autoCorrect="off"
                     />
                 </div>
                 <div className="description field">
                     <label>Description</label>
                     <textarea
+                        autoCorrect="off"
                         value={description}
                         rows="4"
                         cols="50"
                         placeholder="Your description..."
                         onChange={(e) => setDescription(e.target.value)}
+                        required
                     >
                     </textarea>
                 </div>
@@ -76,6 +83,7 @@ const CreateMemory = () => {
                     <label>Location</label>
                     <input
                         type="text"
+                        autoCorrect="off"
                         placeholder="location"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
@@ -86,11 +94,13 @@ const CreateMemory = () => {
                     <input
                         className="file"
                         type="file"
+                        autoCorrect="off"
                         onChange={handleFile}
                         filename="image"
+                        required
                     />
                 </div>
-                {loading ? <button className="loadingBtn">Just a Sec...</button> : <button>Create</button>}
+                {loading ? <button className="loadingBtn" disabled>Just a Sec...</button> : <button>Create</button>}
             </form>
         </StyledCreateMemory>
     );

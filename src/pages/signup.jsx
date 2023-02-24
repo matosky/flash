@@ -22,8 +22,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsloading(true)
-    console.log({ email, password, firstname, lastname, username, gender })
-
+    if (!email || !password || !firstname || !lastname || !username || !gender) {
+      setIsloading(false)
+    }
     try {
       const res = await axios.post(`${BASE_URL}/api/users/signUp`, {
         headers: { "Content-Type": "application/json" },

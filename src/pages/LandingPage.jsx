@@ -30,7 +30,7 @@ function LandingPage() {
                 <div className="top">
                     <h2>Flash X Memories</h2>
                     <p>Reminisce on your past memories with family, loved ones</p>
-                    <button onClick={handleAuth}>Get Started</button>
+                    <button onClick={handleAuth}>Join Now</button>
                 </div>
                 <div className="boxLan">
                     <div className="box2 boxi"></div>

@@ -47,6 +47,7 @@ const EditMemory = ({ onCloseEdit }) => {
                         placeholder="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        autoCorrect="off"
                     />
                 </div>
                 <div className="description field">
@@ -56,6 +57,7 @@ const EditMemory = ({ onCloseEdit }) => {
                         cols="50"
                         placeholder="Your description..."
                         value={description}
+                        autoCorrect="off"
                         onChange={(e) => setDescription(e.target.value)}
                     >
                     </textarea>

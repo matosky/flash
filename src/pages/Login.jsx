@@ -19,6 +19,15 @@ function Login() {
     e.preventDefault();
     setIsloading(true)
     setError('')
+
+    if (!password || !email) {
+      setError("fill required fields")
+      setIsloading(false)
+      setTimeout(() => {
+        setError('')
+      }, 3000);
+      return false;
+    }
     try {
       console.log("anything")
       const res = await axios.post(`${BASE_URL}/api/users/login`, {
@@ -41,10 +50,10 @@ function Login() {
       navigate("/home/public")
     } catch (err) {
       setError("Invalid Login Credentials")
-      console.log("this is err", err)
+      setIsloading(false)
     }
     setTimeout(() => {
-        setError('')
+      setError('')
       },3000)
       setEmail('')
       setPassword('')
@@ -62,6 +71,7 @@ function Login() {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
           </div>
           <div className="password-field field">
@@ -70,6 +80,7 @@ function Login() {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
           </div>
           {error && <p style={{ color: "red" }}> {error}</p>}

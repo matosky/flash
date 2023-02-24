@@ -86,13 +86,12 @@ const SingleMemoryPage = () => {
                             <li>These are some comments....</li>
                         </ul>
                         <div className="commentBox">
-                            {/* <div className="icons">
-                                <FaHeart className="one" />
-                                <FaComment className="two" />
-                            </div> */}
-                            {/* <div className="likes">12k likes</div> */}
                             <div className="input-field">
-                                <input type="text" placeholder="Add a comment..." />
+                                <input
+                                    type="text"
+                                    placeholder="Add a comment..."
+                                    autoCorrect="off"
+                                />
                                 <span className="postBtn">Post</span>
                             </div>
                         </div>

@@ -124,8 +124,8 @@ background-color: #fff;
   }
 
   button:hover{
-    background-color: transparent;
-    color: #fff;
+    color: #000;
+    opacity: 0.6;
   }
 
   .boxLan{
@@ -141,6 +141,7 @@ background-color: #fff;
     max-width: 100%;
     border-radius: 24px;
     height: 300px;
+    opacity: 0.8;
     transition: all 0.3s ease-in-out;
   }
 

@@ -60,6 +60,7 @@ const SearchBarDestop = ({ handleClose }) => {
                     placeholder="Search by username..."
                     value={inputValue}
                     onChange={handleChange}
+                    autoCorrect="off"
                 />
             </div>
             <hr />
