@@ -39,6 +39,7 @@ function Memory(props) {
   const handleUnlike = async () => {
     try {
       const res = await axios.put(`${BASE_URL}/api/likes/unlike/${props.id}`);
+      console.log(res)
       if (res) {
         setLikes((prev) => prev - 1);
         localStorage.removeItem("liked");
@@ -62,9 +63,6 @@ function Memory(props) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("liked")) {
-      likeRef.current.classList.add("hideLike");
-    }
     const handleDate = () => {
       const timestamp = props.date;
       const newDate = new Date(timestamp).getTime();
