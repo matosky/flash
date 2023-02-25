@@ -118,7 +118,7 @@ function Memory(props) {
               <FaRegCommentAlt />
               Comments
             </span>
-            <span>{props.comments.length > 0 ? `${props.comments.length} comments` : `${props.comments.length} comment`}</span>
+            <span>{ props.comments.length } comments</span>
           </div>
           <Comments
             id={props.id}
