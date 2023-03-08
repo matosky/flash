@@ -82,6 +82,7 @@ export const StyledMemory = styled.div`
         display: none;
     }
 
+
     .mainBox{
         display: none;
     }

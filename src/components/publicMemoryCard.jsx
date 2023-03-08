@@ -52,6 +52,7 @@ function PublicMemoryCard() {
                                             id={post._id}
                                             likes={post.likes}
                                             comments={post.comments}
+                                            liked={post.liked}
                                         />
                                     </div>
                                 ))

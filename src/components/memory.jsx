@@ -28,7 +28,7 @@ function Memory(props) {
       const res = await axios.put(`${BASE_URL}/api/likes/like/${props.id}`);
       if (res) {
         likeRef.current.classList.add("hideLike");
-        setLikes((prev) => prev + 1);
+        setLikes((prev) => prev+1);
         localStorage.setItem("liked", true);
       }
     } catch (err) {
@@ -41,7 +41,7 @@ function Memory(props) {
       const res = await axios.put(`${BASE_URL}/api/likes/unlike/${props.id}`);
       console.log(res)
       if (res) {
-        setLikes((prev) => prev - 1);
+        setLikes((prev) => prev-1);
         localStorage.removeItem("liked");
         likeRef.current.classList.remove("hideLike");
       }
@@ -63,6 +63,9 @@ function Memory(props) {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("liked")) {
+      likeRef.current.classList.add("hideLike")
+    }
     const handleDate = () => {
       const timestamp = props.date;
       const newDate = new Date(timestamp).getTime();
@@ -111,6 +114,7 @@ function Memory(props) {
               likeRef={likeRef}
               handleLike={handleLike}
               handleUnlike={handleUnlike}
+              liked={props.liked}
             />
             <span onClick={handleComments} className="com-icon">
               <FaRegCommentAlt />

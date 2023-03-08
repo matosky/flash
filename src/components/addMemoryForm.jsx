@@ -41,6 +41,7 @@ const CreateMemory = () => {
         })
             .then(result => {
                 setIloading(false)
+                console.log(result)
                 setModals({ ...modals, createModal: false })
                 dispatch({ type: "ADD_MEMORY", payload: result.data.data.memory })
             })

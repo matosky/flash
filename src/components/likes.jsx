@@ -9,7 +9,7 @@ const Likes = forwardRef((props,ref) => {
                 <FaRegHeart />
             </span>
             <span onClick={props.handleUnlike} className="on-heart"  >
-              <FaHeart />
+              <FaHeart className={props.liked===true ? `showLike` : undefined}/>
             </span>
         </div>
      );
