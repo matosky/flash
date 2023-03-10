@@ -28,24 +28,19 @@ function Login() {
       }, 3000);
       return false;
     }
+
+    const data = JSON.stringify({email,password})
     try {
-      console.log("anything")
-      const res = await axios.post(`${BASE_URL}/api/users/login`, {
+      const res = await axios.post(`${BASE_URL}/api/users/login`,data, {
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password
-        })
+        }
       })
-     
       if (res) {
         setIsloading(false)
       const user = { username: res.data.user.user_name, token: res.data.token }
       localStorage.setItem("user", JSON.stringify(user))
       userDispatch({type: "LOGIN", payload: user})
-        console.log("this is ", res)
       }
       navigate("/home/public")
     } catch (err) {
