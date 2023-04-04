@@ -12,5 +12,7 @@ export const StyledActions = styled.div
     background:#050A30;
     margin:3px 4px 0 0;
   }
+
+  
   
 `
