@@ -28,7 +28,6 @@ export const UserContextProvider = ({ children }) => {
             userDispatch({ type: "LOGIN", payload: user })
         }
     }, [])
-    console.log(userState)
 
     return (
         <UserContext.Provider value={{ userState, userDispatch }}>
